@@ -15,11 +15,14 @@ class Singer:
         self.popularity = popularity
         self.price = self.strength * random.randint(8, 12) * 1000 + self.popularity * 2000 + int(
             random.normalvariate(0, 1) * 10) * 1000
+        self.player = None
+        self.album = None
+        self.live = None
 
     def __repr__(self):
-        return "Name: {}, Strength: {}, Popularity: {}, Price: {}\n".format(self.name, self.strength, self.popularity,
-                                                                            self.price)
+        return "Name: {}, Strength: {}, Popularity: {}, Price: {}, \nAlbum: {}, \n".format(self.name, self.strength, self.popularity,
+                                                                            self.price, self.album)
 
 def get_random_singer():
     return Singer(name=generate_name(), strength=random.choice([1, 1, 1, 2, 2, 3]),
-                  popularity=random.choice(range(1, 7)))
+                  popularity=random.randint(1, 6))
