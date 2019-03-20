@@ -3,7 +3,7 @@ from utils import *
 from album import *
 
 # EH: add them to "settings"
-PRICE_RECORD_ALBUM = 100000
+PRICE_RECORD_ALBUM = 50000
 
 class Action:
 
@@ -30,6 +30,28 @@ class BuySinger(Action):
 
     def __repr__(self):
         return "Buy singer: {}".format(self.singer)
+
+class BidSinger(Action):
+
+    def __init__(self, studio, singer):
+        self.studio = studio
+        self.singer = singer
+
+    def act(self, player):
+        if player.money <= self.singer.price:
+            print("Not enough money.")
+            return False
+
+        player.money -= self.singer.price
+        player.singers.append(self.singer)
+        self.studio.singers.remove(self.singer)
+        self.singer.player = player
+
+        print("Singer bought!")
+
+    def __repr__(self):
+        return "Bid singer: {}".format(self.singer)
+
 
 class RecordAlbum(Action):
 

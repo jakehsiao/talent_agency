@@ -9,20 +9,26 @@ def generate_name():
 
 class Singer:
 
-    def __init__(self, name="", strength=1, popularity=3):
+    def __init__(self, name="", strength=1, popularity=3, genre="", style=""):
         self.name = name
         self.strength = strength
         self.popularity = popularity
         self.price = self.strength * random.randint(8, 12) * 1000 + self.popularity * 2000 + int(
             random.normalvariate(0, 1) * 10) * 1000
         self.player = None
+
+        self.genre = genre
+        self.style = style
+        self.additional_genres = []
+        self.additional_styles = []
+
         self.album = None
         self.live = None
 
     def __repr__(self):
-        return "Name: {}, Strength: {}, Popularity: {}, Price: {}, \nAlbum: {}, \n".format(self.name, self.strength, self.popularity,
-                                                                            self.price, self.album)
+        return "Name: {}, Strength: {}, Popularity: {}, Price: {}, \nGenre: {}, Style: {}, \nAlbum: {}, \n".format(self.name, self.strength, self.popularity,
+                                                                            self.price, self.genre, self.style, self.album)
 
 def get_random_singer():
     return Singer(name=generate_name(), strength=random.choice([1, 1, 1, 2, 2, 3]),
-                  popularity=random.randint(1, 6))
+                  popularity=random.randint(1, 6), genre=random.choice(["Rock", "Country", "Jazz", "EDM", "R&B", "HipHop"]), style=random.choice(["fresh", "manic", "powerful", "lyric"]))
